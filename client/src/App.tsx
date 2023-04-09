@@ -21,6 +21,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: SortOrder | null;
+  searchText: string | null;
 }
 
 const App = () => {
@@ -32,6 +33,8 @@ const App = () => {
     setGameQuery({ ...gameQuery, platform });
   const handleSelectSort = (sortOrder: SortOrder) =>
     setGameQuery({ ...gameQuery, sortOrder });
+  const handleSearch = (searchText: string) =>
+    setGameQuery({ ...gameQuery, searchText });
 
   return (
     <ChakraProvider theme={theme}>
@@ -48,7 +51,7 @@ const App = () => {
           }}
         >
           <GridItem area='nav'>
-            <NavBar />
+            <NavBar onSearch={handleSearch} />
           </GridItem>
 
           <Show above='lg'>
