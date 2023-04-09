@@ -8,11 +8,12 @@ import { useState } from 'react';
 import { Genre } from './hooks/useGenres';
 import { PlatformSelector } from './components/PlatformSelector';
 import { Platform } from './hooks/useGames';
-import SortSelector from './components/SortSelector';
+import SortSelector, { SortOrder } from './components/SortSelector';
 
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
+  sortOrder: SortOrder | null;
 }
 
 const App = () => {
@@ -22,6 +23,8 @@ const App = () => {
     setGameQuery({ ...gameQuery, genre });
   const handleSelectPlatform = (platform: Platform) =>
     setGameQuery({ ...gameQuery, platform });
+  const handleSelectSort = (sortOrder: SortOrder) =>
+    setGameQuery({ ...gameQuery, sortOrder });
 
   return (
     <ChakraProvider theme={theme}>
@@ -56,7 +59,10 @@ const App = () => {
                 onSelectPlatform={handleSelectPlatform}
                 selectedPlatform={gameQuery.platform}
               />
-              <SortSelector />
+              <SortSelector
+                onSelectSort={handleSelectSort}
+                selectedSort={gameQuery.sortOrder}
+              />
             </HStack>
             <GameGrid gameQuery={gameQuery} />
           </GridItem>
