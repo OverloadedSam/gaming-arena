@@ -1,5 +1,5 @@
-import { Button, ColorModeScript } from '@chakra-ui/react';
 import { ChakraProvider, Grid, GridItem, Show } from '@chakra-ui/react';
+import { ColorModeScript } from '@chakra-ui/react';
 import theme from './theme';
 import NavBar from './components/NavBar';
 
@@ -19,14 +19,10 @@ const App = () => {
           </GridItem>
 
           <Show above='lg'>
-            <GridItem area='aside' bg='coral'>
-              Aside
-            </GridItem>
+            <GridItem area='aside'>Aside</GridItem>
           </Show>
 
-          <GridItem area='main' bg='gold'>
-            Main
-          </GridItem>
+          <GridItem area='main'>Main</GridItem>
         </Grid>
       </div>
     </ChakraProvider>
