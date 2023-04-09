@@ -4,8 +4,14 @@ import theme from './theme';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import GenreList from './components/GenreList';
+import { useState } from 'react';
+import { Genre } from './hooks/useGenres';
 
 const App = () => {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
+  const handleSelectGenre = (g: Genre) => setSelectedGenre(g);
+
   return (
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
@@ -26,12 +32,12 @@ const App = () => {
 
           <Show above='lg'>
             <GridItem area='aside' paddingX={5}>
-              <GenreList />
+              <GenreList onSelectGenre={handleSelectGenre} />
             </GridItem>
           </Show>
 
           <GridItem area='main'>
-            <GameGrid />
+            <GameGrid selectedGenre={selectedGenre} />
           </GridItem>
         </Grid>
       </div>
